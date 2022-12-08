@@ -1,5 +1,6 @@
 package fr.kp.apiresthibernate.endpoint;
 
+import fr.kp.apiresthibernate.dto.ClassificationDto;
 import fr.kp.apiresthibernate.entities.ClassificationEntity;
 import fr.kp.apiresthibernate.repositories.ClassificationRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,7 +19,7 @@ public class ClassificationResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(){
-        List<ClassificationEntity> classifications = classificationRepository.getAll();
+        List<ClassificationDto> classifications = classificationRepository.getAll();
         return Response.ok(classifications).build();
     }
 
@@ -26,13 +27,13 @@ public class ClassificationResource {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getById(@PathParam("id") Integer id){
-        ClassificationEntity classification = classificationRepository.getById(id);
+        ClassificationDto classification = classificationRepository.getById(id);
         return Response.ok(classification).build();
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(ClassificationEntity classification){
+    public Response update(ClassificationDto classification){
         if(classification == null)
             return Response.status(Response.Status.BAD_REQUEST).build();
         if (classificationRepository.update(classification))
@@ -43,7 +44,7 @@ public class ClassificationResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(ClassificationEntity classification){
+    public Response create(ClassificationDto classification){
         if(classification == null)
             return Response.status(Response.Status.BAD_REQUEST).build();
         if (classificationRepository.create(classification) != 0)

@@ -1,5 +1,6 @@
 package fr.kp.apiresthibernate.endpoint;
 
+import fr.kp.apiresthibernate.dto.FamilleDto;
 import fr.kp.apiresthibernate.repositories.FamilleRepository;
 import fr.kp.apiresthibernate.entities.FamilleEntity;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,7 +19,7 @@ public class FamilleResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(){
-        List<FamilleEntity> familles = familleRepository.getAll();
+        List<FamilleDto> familles = familleRepository.getAll();
         return Response.ok(familles).build();
     }
 

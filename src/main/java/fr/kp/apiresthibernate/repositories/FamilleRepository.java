@@ -1,5 +1,6 @@
 package fr.kp.apiresthibernate.repositories;
 
+import fr.kp.apiresthibernate.dto.FamilleDto;
 import fr.kp.apiresthibernate.entities.FamilleEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
@@ -11,8 +12,8 @@ public class FamilleRepository {
 
     EntityManager entityManager = Persistence.createEntityManagerFactory("fr.kp.apiresthibernate").createEntityManager();
 
-    public List<FamilleEntity> getAll() {
-        return entityManager.createNamedQuery("famille.getAll", FamilleEntity.class).getResultList();
+    public List<FamilleDto> getAll() {
+        return FamilleDto.toFamilleDtoList(entityManager.createNamedQuery("famille.getAll", FamilleEntity.class).getResultList());
     }
 
     public FamilleEntity getById(int id) {
