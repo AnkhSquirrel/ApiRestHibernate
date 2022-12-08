@@ -17,12 +17,14 @@ public class ClassificationEntity {
     @Id
     @Column(name = "id_classification")
     private int idClassification;
+
     @Basic
     @Column(name = "Classification")
     private String classification;
 
-    @OneToMany (fetch = FetchType.LAZY, mappedBy = "idClassification")
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "classification")
     private List<FamilleEntity> familles;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

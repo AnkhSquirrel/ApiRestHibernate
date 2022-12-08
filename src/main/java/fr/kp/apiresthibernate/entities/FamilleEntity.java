@@ -21,9 +21,10 @@ public class FamilleEntity {
     @Column(name = "Famille")
     private String famille;
 
-    @Basic
-    @Column(name = "id_classification")
-    private int idClassification;
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_classification")
+    private ClassificationEntity classification;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
